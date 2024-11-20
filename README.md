@@ -1,1 +1,4 @@
-# 2024_WA_INF1_foltin_python
+# Python Pískoviště
+
+
+Tady si budem hrát s Pythonem
