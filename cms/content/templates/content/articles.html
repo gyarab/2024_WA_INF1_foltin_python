@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Clanky</title>
+</head>
+<body>
+    <h1>seznam clanku</h1>
+
+    {% for article in data %}
+        <h2><a href="{% url 'content:article' forloop.counter0 %}">{{ article.title }}</a></h2>
+        <p>{{ article.perex }}</p>
+    {% endfor %}
+</body>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Clanky</title>
+</head>
+<body>
+    <h1>{{ article.title }}</h1>
+
+    <img src="{{ article.image }}" alt="Article Image">
+    <p>{{ article.perex }}</p>
+
+    <a href="{% url 'content:articles' %}"">Zpet na seznam</a>
+
+</body>
+</html>
