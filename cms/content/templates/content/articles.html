@@ -1,14 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Clanky</title>
-</head>
-<body>
-    <h1>seznam clanku</h1>
+{% extends 'content/base.html' %}
 
+
+{% block title %}
+    Seznam Clanku
+{% endblock %}
+
+{% block main %}
     {% for article in data %}
+        {% if forloop.counter0 == 1 %}
+            <hr/>
+        {% endif %}
         <h2><a href="{% url 'content:article' forloop.counter0 %}">{{ article.title }}</a></h2>
-        <p>{{ article.perex }}</p>
+        <p>{{ article.perex | add:"..."}}</p>
     {% endfor %}
-</body>
-</html>
+{% endblock %}
