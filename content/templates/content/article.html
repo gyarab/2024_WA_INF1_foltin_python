@@ -5,8 +5,9 @@
 {% endblock %}
 
 {% block main %}
-    <img src="{{ article.image }}" alt="Article Image">
     <p>{{ article.perex }}</p>
+
+    <p>{{ article.text }}</p>
 
     <a href="{% url 'content:articles' %}"">Zpet na seznam</a>
 {% endblock %}
