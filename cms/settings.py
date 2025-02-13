@@ -128,6 +128,6 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-FIXTURES_DIRS = [
-    BASE_DIR / 'fixtures/',
+FIXTURE_DIRS = [
+    BASE_DIR / 'fixtures',
 ]
