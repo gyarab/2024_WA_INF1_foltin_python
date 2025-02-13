@@ -8,8 +8,9 @@ class Category(models.Model):
     class Meta:
         verbose_name_plural = "Categories"
 
+
     def __str__(self):
-        return self.name
+        return str(self.name)
 
 
 class Article(models.Model):
@@ -21,7 +22,7 @@ class Article(models.Model):
     categories = models.ManyToManyField(Category, related_name='articles')
 
     def __str__(self):
-        return self.title
+        return str(self.title)
 
 
 
