@@ -1,0 +1,17 @@
+{% extends 'content/base.html' %}
+{% load static %}
+
+{% block title %}
+    Kosmická Kachna
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <div class="row">
+            {% for article in articles %}
+                {% include 'content/article_card.html' %}
+
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'content/base.html' %}
+{% load static %}
+
+{% block title %}
+    {{ author.first_name }} {{ author.last_name }}
+{% endblock %}
+
+{% block main %}
+    <div class="container-fluid bg-dark text-light py-1">
+        <h1 class="text-center my-4 display-1">{{ author.first_name }} {{ author.last_name }}</h1>
+    </div>
+    <section>
+        <div class="my-4 text-center">
+            <img src="{% static 'img/author.png' %}" alt="{{ author.first_name }} {{ author.last_name }}" class="rounded-circle img-fluid" style="width: 300px; height: 300px;">
+        </div>
+        <div class="my-4">
+            <p class="text-center lead">{{ author.bio }}</p>
+        </div>
+        <div class="my-4">
+            <h2 class="text-center my-4">Články autora</h2>
+        </div>
+        {% for article in articles %}
+            {% include 'content/article_card.html' %}
+        {% endfor %}
+    </section>
+{% endblock %}

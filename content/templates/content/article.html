@@ -1,18 +1,50 @@
-{% extends 'content/base.html' %}
+    {% extends 'content/base.html' %}
+{% load static %}
 
 {% block title %}
     {{ article.title }}
 {% endblock %}
 
 {% block main %}
-    <p>{{ article.perex }}</p>
-    <strong>
-        {% for category in article.categories.all %}
-            <a href="{%url 'content:category' category.id %}">{{ category.name }}</a>{% if not forloop.last %}, {% endif %}
-        {% endfor %}
-    </strong>
-
-    <p>{{ article.text }}</p>
-
-    <a href="{% url 'content:articles' %}"">Zpet na seznam</a>
+    <div class="container-fluid bg-dark text-light py-1">
+        <h1 class="text-center my-4">{{ article.title }}</h1>
+        <div class="text-center my-4">
+            <ul class="list-inline">
+                {% for category in article.categories.all %}
+                    <li class="list-inline-item">
+                        <a href="{% url 'content:category' category.id %}" class="badge bg-primary text-decoration-none p-2">{{ category.name }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    
+    <article>
+        <div class="my-4">
+            <p class="text-center lead">
+                {{ article.perex }}
+            </p>
+        </div>
+        <div class="my-4">
+            <img src="{% static 'img/article.png' %}" alt="{{ article.title }}" class="img-fluid" style="max-width: 100%; height: auto;">
+        </div>
+        <div class="my-4"></div>
+            <p class="text-muted text-center">{{ article.published|date:"F j, Y" }} od {{ article.author.first_name }} {{ article.author.last_name }}</p>
+            <p>{{ article.text }}</p>
+        </div>
+        <div class="card my-4">
+            <div class="row g-0">
+                <div class="col-md-4 p-3">
+                    <img src="{% static 'img/author.png' %}" class="img-fluid rounded-circle" alt="{{ article.author.first_name }} {{ article.author.last_name }}">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ article.author.first_name }} {{ article.author.last_name }}</h5>
+                        <p class="card-text">{{ article.author.bio }}</p>
+                        <p class="card-text"><a href="{% url 'content:author' article.author.id %}">Další články autora</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
 {% endblock %}

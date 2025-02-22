@@ -1,18 +1,24 @@
 {% extends 'content/base.html' %}
-
+{% load static %}
 
 {% block title %}
-    Rubrika {{ category.name }}
+    {{ category.name }}
 {% endblock %}
 
 {% block main %}
-    {% for article in articles %}
-        <h2><a href="{% url 'content:article' article.id %}">{{ article.title }}</a></h2>
-        <strong>
-            {% for category in article.categories.all %}
-                {{ category.name }}{% if not forloop.last %}, {% endif %}
-            {% endfor %}
-        </strong>
-        <p>{{ article.perex }}</p>
-    {% endfor %}
+    <div class="container-fluid bg-dark text-light py-1">
+        <h1 class="text-center my-4">{{ category.name }}</h1>
+    </div>
+    <section>
+
+        <div class="my-4 card">
+            <img src="{% static 'img/category.png' %}" alt="{{ category.name }}" class="card-img-top">
+            <div class="card-body bg-dark text-light">
+                <p class="card-text text-center lead">{{ category.description }}</p>
+            </div>
+        </div>
+        {% for article in articles %}
+            {% include 'content/article_card.html' %}
+        {% endfor %}
+    </section>
 {% endblock %}
