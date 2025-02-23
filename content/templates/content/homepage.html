@@ -6,12 +6,38 @@
 {% endblock %}
 
 {% block main %}
-    <div class="container">
+    {% for article in articles|slice:":1" %}
+    <div class="container-fluid bg-dark text-light py-1">
         <div class="row">
-            {% for article in articles %}
-                {% include 'content/article_card.html' %}
-
-            {% endfor %}
+            <div class="col-md-4">
+                <div class="my-4">
+                    <img src="{% static 'img/article.png' %}" class="img-fluid rounded-start" alt="{{ article.title }}">
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="my-4">
+                    <h1 class="card-title display-5"><a href="{% url 'content:article' article.id %}" class="text-light">{{ article.title }}</a></h1>
+                </div>
+                <div class="my-4">
+                    <p class="lead">{{ article.perex|linebreaksbr }}</p>
+                    <p class="text-white-50 text-center">{{ article.published|date:"F j, Y" }} od {{ article.author.first_name }} {{ article.author.last_name }}</p>
+                </div>
+                <div class="text-center my-4">
+                    <ul class="list-inline">
+                        {% for category in article.categories.all %}
+                            <li class="list-inline-item">
+                                <a href="{% url 'content:category' category.id %}" class="badge bg-primary text-decoration-none p-2">{{ category.name }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
+    {% endfor %}
+<section>
+    {% for article in articles|slice:"2:" %}
+        {% include 'content/article_card.html' %}
+    {% endfor %}
+</section>
 {% endblock %}

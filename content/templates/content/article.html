@@ -7,7 +7,7 @@
 
 {% block main %}
     <div class="container-fluid bg-dark text-light py-1">
-        <h1 class="text-center my-4">{{ article.title }}</h1>
+        <h1 class="text-center my-4 display-5">{{ article.title }}</h1>
         <div class="text-center my-4">
             <ul class="list-inline">
                 {% for category in article.categories.all %}
@@ -22,7 +22,7 @@
     <article>
         <div class="my-4">
             <p class="text-center lead">
-                {{ article.perex }}
+                {{ article.perex|linebreaksbr }}
             </p>
         </div>
         <div class="my-4">
@@ -30,7 +30,7 @@
         </div>
         <div class="my-4"></div>
             <p class="text-muted text-center">{{ article.published|date:"F j, Y" }} od {{ article.author.first_name }} {{ article.author.last_name }}</p>
-            <p>{{ article.text }}</p>
+            <p>{{ article.text|linebreaksbr }}</p>
         </div>
         <div class="card my-4">
             <div class="row g-0">

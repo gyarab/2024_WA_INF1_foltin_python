@@ -1,6 +1,4 @@
-# README
-
-## Ukázkový projekt: Redakční systém v Django
+# Redakční systém v Django
 
 Tato aplikace vytvořená k demonstraci možností frameworku Django v hodinách Webové aplikace.
 
@@ -21,10 +19,8 @@ Projekt obsahuje tři hlavní modely: `Category`, `Author` a `Article`. Tyto mod
 ### **`Article`** (Článek)
 - Reprezentuje jednotlivý článek publikovaný v systému.
 - Obsahuje atributy `title` (název), `perex` (krátký úvodní text), `text` (plný obsah článku) a `published` (datum a čas publikace).
-- Vztah N:M s modelem `Category`.
-- Vztah N:1 s modelem `Author`.
-
-## Vývoj projektu
+- Vztah M:N s modelem `Category`.
+- Vztah 1:N s modelem `Author`.
 
 Projekt byl vyvíjen s asistencí GitHub Copilot.
 
@@ -37,5 +33,6 @@ Veškerý textový a obrázkový obsah byl vygenerován pomocí ChatGPT jako uk�
 Ahoj, vytvářím jednoduchý redakční systém a potřebuji ukázková data. Chci udělat vtipný surealistický, až dadaistický web, s několika rubrikami, autory a vygenerovat několik článků. Nejprve mi vygeneruj seznam šesti rubrik. Každá rubrika má název, max 30 znaků a krátký popisek (cca 200 znaků).
 ```
 
-Zajímavý poznatek
+Zajímavý poznatek:
+
 ![ChatGPT](chatgpt.png)
