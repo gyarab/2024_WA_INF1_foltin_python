@@ -13,6 +13,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'db1094',
-        # read from .pgpass
+        'USER': 'db1094',
+        'PASSWORD': '', # read from .pgpass
     }
 }
