@@ -36,8 +36,5 @@ def author(request, id):
     return render(request, 'content/author.html', {'categories': categories, 'authors': authors, 'author': author, 'articles': articles})
     
 def info(request):
-    referer = request.META.get('HTTP_REFERER', '')
-    ip = request.META['REMOTE_ADDR']
-    user_agent = request.META['HTTP_USER_AGENT']
-
-    return HTTPResponse(json.dumps({'ip': ip, 'user_agent': user_agent, 'referer': referer}), content_type='application/json')
+    meta = {k: str(v) for k, v in request.META.items()}
+    return HTTPResponse(json.dumps(meta, indent=4), content_type='application/json')
