@@ -356,6 +356,9 @@ WantedBy=default.target
             print(f"🟩 Creating symlink from '{media_symlink}' to '{media_dir}' ...")
             media_symlink.symlink_to(media_dir)
       
+        if self.systemd_is_active(): # might be active from previous setup
+            self.systemd_stop()
+
         self.systemd_daemon_reload()
         self.systemd_enable()
         self.systemd_start()
