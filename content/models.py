@@ -28,9 +28,24 @@ class Article(models.Model):
     published = models.DateTimeField()
     author = models.ForeignKey(Author, on_delete=models.CASCADE, related_name='articles')
     categories = models.ManyToManyField(Category, related_name='articles')
+    vote_sum = models.IntegerField(default=0)
+    vote_count = models.IntegerField(default=0)
+
+    def vote_avg(self):
+        return self.vote_sum / self.vote_count if self.vote_count > 0 else 0        
 
     def __str__(self):
         return str(self.title)
 
+class Comment(models.Model):
+    name = models.CharField(max_length=100)
+    text = models.TextField()
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='comments')
+    time = models.DateTimeField(auto_now_add=True, null=True)
+    ip = models.GenericIPAddressField(default=None, null=True)
+    user_agent = models.CharField(max_length=200, default=None, null=True)
+  
+    def __str__(self):
+        return str(self.name)
 
 

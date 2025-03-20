@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Article, Category, Author
+from .models import Article, Category, Author, Comment
 
 
 class ArticleAdmin(admin.ModelAdmin):
@@ -13,4 +13,5 @@ class ArticleAdmin(admin.ModelAdmin):
 admin.site.register(Article, ArticleAdmin)
 admin.site.register(Category)
 admin.site.register(Author)
+admin.site.register(Comment)
 
