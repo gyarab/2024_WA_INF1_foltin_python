@@ -33,9 +33,10 @@ def article(request, id):
             comment.user_agent = request.META.get('HTTP_USER_AGENT')
             comment.save()
             return HTTPResponseRedirect(reverse('content:article', args=[id]))
+    
     if request.method == 'GET' and 'vote' in request.GET:
-        cookiename=f'voted_{article.id}'
-        if cookiename in request.COOKIES:
+        cookie_name=f'voted_{article.id}'
+        if cookie_name in request.COOKIES:
             return HTTPResponseRedirect(reverse('content:article', args=[id]))
         
         vote = int(request.GET['vote'])
@@ -45,15 +46,17 @@ def article(request, id):
             article.save()
 
             response = HTTPResponseRedirect(reverse('content:article', args=[id]))
-            response.set_cookie(cookiename, '1')
+            #response.set_cookie(cookie_name, '1')
             return response
         
+    voted = request.COOKIES.get(f'voted_{id}')
     
     return render(request, 'content/article.html', {
             'categories': categories, 
             'authors': authors, 
             'article': article,
-            'form': form
+            'form': form,
+            'voted': voted,
             })
 
 def category(request, id):

@@ -46,29 +46,26 @@
                 </div>
             </div>
         </div>
-        <div>
-            hlasu {{ article.vote_count }}
-            prumer {{ article.vote_avg }}
-        </div>
-        <div class="my-4">
-            <h2>Vote</h2>
-            <ul class="list-group">
-                <li class="list-group-item">
-                    <a href="?vote=1" class="btn btn-primary">Vote 1 &#128077;</a>
-                </li>
-                <li class="list-group-item">
-                    <a href="?vote=2" class="btn btn-primary">Vote 2 &#128078;</a>
-                </li>
-                <li class="list-group-item">
-                    <a href="?vote=3" class="btn btn-primary">Vote 3 &#128079;</a>
-                </li>
-                <li class="list-group-item">
-                    <a href="?vote=4" class="btn btn-primary">Vote 4 &#128076;</a>
-                </li>
-                <li class="list-group-item">
-                    <a href="?vote=5" class="btn btn-primary">Vote 5 &#128075;</a>
-                </li>
-            </ul>
+        <div class="my-4 text-center">
+            {% if voted %}
+                <h2>Hodnocení</h2>
+                <div class="alert alert-info" role="alert">
+                    {% if article.vote_count > 0 %}
+                        <strong>{{ article.vote_avg|floatformat:2 }}</strong> (hlasů {{ article.vote_count }})
+                    {% else %}
+                        Žádné hlasy
+                    {% endif %}
+                </div>
+            {% else %} 
+                <h2>Ohodnoťte článek</h2>
+                <div class="btn-group" role="group" aria-label="Rating">
+                    <a href="?vote=1" class="btn btn-outline-secondary">😡</a>
+                    <a href="?vote=2" class="btn btn-outline-secondary">😕</a>
+                    <a href="?vote=3" class="btn btn-outline-secondary">😐</a>
+                    <a href="?vote=4" class="btn btn-outline-secondary">😊</a>
+                    <a href="?vote=5" class="btn btn-outline-secondary">😍</a>
+                </div>
+            {% endif %}
         </div>
         <div>
             <form action="" method="POST">
