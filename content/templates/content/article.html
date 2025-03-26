@@ -74,20 +74,19 @@
                 <button type="submit" class="btn btn-primary">Odeslat</button>
             </form>
         </div>
-        <div>
-            <div class="my-4">
-                <h2>Komentáře</h2>
-                <ul class="list-group">
-                    {% for comment in article.comments.all %}
-                        <li class="list-group-item">
-                            <div class="d-flex justify-content-between">
-                                <h5 class="mb-1">{{ comment.name }}</h5>
-                                
-                            </div>
-                            <p class="mb-1">{{ comment.text }}</p>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>    </div>
+        <div class="my-4">
+            <h2>Komentáře</h2>
+            <div class="list-group">
+                {% for comment in article.comments.all %}
+                    <div class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">{{ comment.name }}</h5>
+                            <small>{{ comment.time|date:"F j, Y" }}</small>
+                        </div>
+                        <p class="mb-1">{{ comment.text }}</p>
+                    </div>
+                {% endfor %}
+            </div>    
+        </div>
     </article>
 {% endblock %}
