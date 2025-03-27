@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse as HTTPResponse
 from django.http import HttpResponseRedirect as HTTPResponseRedirect
 from django.urls import reverse
+from django.db.models import F
 
 import json
 from .models import Article, Category, Author, Comment
@@ -9,9 +10,9 @@ from .forms import CommentForm
 
 # Create your views here.
 def homepage(request):
-    categories = Category.objects.all()
+    categories = Category.objects.order_by('name').exclude(id=1).all()
     authors = Author.objects.all()
-    articles = Article.objects.all()
+    articles = list(Article.objects.filter(vote_count__gte=1).select_related("author").prefetch_related("categories").all())
     return render(request, 'content/homepage.html', {'categories': categories, 'authors': authors, 'articles': articles})
 
 def article(request, id):
@@ -41,13 +42,15 @@ def article(request, id):
         
         vote = int(request.GET['vote'])
         if vote <= 5 and vote >= 1:
-            article.vote_sum += vote
-            article.vote_count += 1
-            article.save()
+            Article.objects.filter(id=id).update(
+                vote_sum=F('vote_sum') + vote,
+                vote_count=F('vote_count') + 1
+            )
 
             response = HTTPResponseRedirect(reverse('content:article', args=[id]))
             #response.set_cookie(cookie_name, '1')
             return response
+            
         
     voted = request.COOKIES.get(f'voted_{id}')
     
