@@ -5,6 +5,7 @@ from django.db import models
 class Category(models.Model):
     name = models.CharField(max_length=50)
     description = models.TextField()
+    image = models.ImageField(upload_to='categories', default=None, null=True)
 
     class Meta:
         verbose_name_plural = "Categories"
@@ -17,6 +18,7 @@ class Author(models.Model):
     last_name = models.CharField(max_length=200)
     email = models.EmailField()
     bio = models.TextField()
+    photo = models.ImageField(upload_to='authors', default=None, null=True)
 
     def __str__(self):
         return str(self.first_name) + ' ' + str(self.last_name)

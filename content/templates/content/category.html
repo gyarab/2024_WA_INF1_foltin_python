@@ -11,7 +11,7 @@
     </div>
     <section>
         <div class="my-4 card">
-            <img src="{% static 'img/category.png' %}" alt="{{ category.name }}" class="card-img-top">
+            <img src="{{ category.image.url }}" alt="{{ category.name }}" class="card-img-top">
             <div class="card-body bg-dark text-light">
                 <p class="card-text text-center lead">{{ category.description|linebreaksbr }}</p>
             </div>

@@ -22,7 +22,7 @@
     <article>
         <div class="my-4">
             <p class="text-center lead">
-                {{ article.perex|linebreaksbr }}
+                {{ article.perex |  safe }}
             </p>
         </div>
         <div class="my-4">
@@ -30,7 +30,7 @@
         </div>
         <div class="my-4"></div>
             <p class="text-muted text-center">{{ article.published|date:"F j, Y" }} od {{ article.author.first_name }} {{ article.author.last_name }}</p>
-            <p>{{ article.text|linebreaksbr }}</p>
+            <p>{{ article.text | linebreaksbr }}</p>
         </div>
         <div class="card my-4">
             <div class="row g-0">
